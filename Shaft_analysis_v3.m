@@ -23,7 +23,7 @@ Rb = input('Enter the radius of the gear (inches). ') ;
 cx = - dx ; 
 Tb = - Td ; 
 bz = Tb/Rb ; 
-B = bz / cos(20*pi/180) ;
+B = bz / cos(20*pi/180) ; % 
 by = B * sin(20*pi/180) ;
 cy = ( (dy*(Lt_i-La))-(by*(Lb-La)) ) / (Lc) ; 
 ay = dy - by - cy ;
@@ -39,7 +39,9 @@ Myb = ay*(Lb-La) ;
 y1 = (((Myb)./(Lb - La)).*x1) - (((Myb)./(Lb - La)).*La) ; %piece 1
 y2 = -(((Myb)./(Lc - Lb)).*x2) + (((Myb)./(Lc - Lb)).*Lc) ; %piece 2 
 figure(1) ; 
-plot(x1,y1,'k',x2,y2,'k') ; 
+subplot(4,1,1) ;
+plot(x1,y1,'k',x2,y2,'k') ;
+xlim([0 Lt_i])
 xlabel('X Distance [in]') ; ylabel('Bending Moment [lb-in]') ; title('Moment Diagram (My)') ;
 
 % Mz Diagram
@@ -49,7 +51,7 @@ y3 = (((Mzb)./(Lb - La)).*x1) - (((Mzb)./(Lb - La)).*La) ; %piece 1
 y4 = (((Mzc-Mzb)/(Lc-Lb)).*x2) + Mzb - (((Mzc-Mzb)/(Lc-Lb))*Lb) ; %piece 2
 x3 = Lc:Lt_i/1000:Lt_i ;
 y5 = ((-Mzc/(Lt_i-Lc)).*x3) + ((Mzc/(Lt_i-Lc)).* Lt_i) ; %piece 3
-figure(2) ; 
+subplot(4,1,2) ;
 plot(x1,y3,'k',x2,y4,'k') ;
 hold on ;
 plot(x3,y5,'k') ;
@@ -60,7 +62,7 @@ xlabel('X Distance [in]') ; ylabel('Bending Moment [lb-in]') ; title('Moment Dia
 yr1 = sqrt((y1).^2 + (y3).^2) ;
 yr2 = sqrt((y2).^2 + (y4).^2) ;
 yr3 = y5 ;
-figure(3) ;
+subplot(4,1,3) ;
 plot(x1,yr1,'k',x2,yr2,'k') ; 
 hold on ;
 plot(x3,yr3,'k') ;
@@ -71,7 +73,7 @@ xlabel('X Distance [in]') ; ylabel('Bending Moment [lb-in]') ; title('Resultant 
 % Torque Diagram 
 
 Ti = -Tb ; % Internal Torque
-figure(4) ;
+subplot(4,1,4) ;
 plot([0 Lb],[0 0], 'k') ;
 hold on ;
 plot([Lb Lb],[0 Ti], 'k') ;
@@ -83,6 +85,8 @@ xlabel('X Distance [in]') ; ylabel('Torque [lb-in]') ; title('Torque Diagram (Mx
 Mr1 = yr1(round(length(yr1)/2)) ; 
 Mr2 = yr1(length(yr1)) ; 
 Mr3 = yr3(round(length(yr3)/2)) ; 
+
+%% Output Variables
 save('variables.mat','Mr1','Mr2', 'Mr3','Ti', 'Rb','ns','nf') ;
 
 

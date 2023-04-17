@@ -2,8 +2,7 @@
 
 close all ; clear ; clc ;
 load('variables.mat','Mr1','Mr2', 'Mr3','Ti', 'Rb','ns','nf') ;
-load('variables2.mat','kt1', 'kts1' ,'kt2','kts2', 'r1' , 'D1','D2','D2b','D3')
-load('variables3.mat','Sut') ; 
+load('variables2.mat','kt1', 'kts1' ,'kt2','kts2', 'kt_hole','kts_hole','r1', 'D1','D2','D2b', 'D2_hole', 'D3', 'Sut')
 fprintf("Type in one of the following values for the corresponding finish \nGround = 1 \nMachined/Cold-drawn = 2 \nHot-rolled = 3 \nAs-forged = 4 \n")
 A = input("Select from list above ") ;
 fprintf("\n Input operating temperature in degrees fahrenheit \n")
@@ -84,27 +83,6 @@ while FS_verify_f < 2
     else
         kb = 0.91*D1^-0.157 ;
     end
-
-
-%     if .1 <= D2 <= 2
-%         kb2 = 0.879*D2^-0.107 ; 
-%     else
-%         kb2 = 0.91*D2^-0.157 ;
-%     end
-% 
-% 
-%     if .1 <= D2b <= 2
-%         kb2b = 0.879*D2b^-0.107 ; 
-%     else
-%         kb2b = 0.91*D2b^-0.157 ;
-%     end
-% 
-% 
-%     if .1 <= D3 <= 2
-%         kb3 = 0.879*D3^-0.107 ; 
-%     else
-%         kb3 = 0.91*D3^-0.157 ;
-%     end
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % for kc
 
@@ -157,7 +135,11 @@ while FS_verify_f < 2
     end
 end
 
-FS_verify_f
-hr1
-D2
-D1
+% FS_verify_f
+% hr1
+% D2
+% D1
+
+%% Output Variables
+
+save('variables3.mat','FS_verify_f', 'hr1', 'D2', 'D1') ;
