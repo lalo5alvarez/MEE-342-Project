@@ -1,3 +1,33 @@
 # MEE-342-Project
-----Shaft Analysis v2----
-The expected inputs of the file include the ideal lengths of all three shafts, the youngs modulus, yeild strength, endurance limit, ultimate tensile strength, ideal factor of safety, the radi and width of all the gears and bearings, and the radial and tangential forces in between the gears and supports. From here the code will give the moment and torsion diagrams of the shaft. Later on, the code will ask you for an input for the concentration factors at the shoulders and key ways. From here the code will calulate the von mesis stress using the yield and factor of safetey, and using the input kf values it will calculate the goodman diameter and using this diameter it calculates kf until the values fall within 5% of eachother. The deflection is analyzed using finite element analysis, , and the fatigue analysis uses von mesisis  and other equations.
+
+**IGNORE ALL FILES BESIDES: 
+ - 'input_shaft.m'
+ - -countershaft.m'
+ - output_shaft.m'
+
+**Inputs: 
+
+The inputs that the code accept are the total lengths of the shafts (all three), gear radius (two), fillet radii, surface finish, operating temperatures, and types of loading. 
+
+ - Total Lengths of Shafts -> Up to the user to define! 
+ - Gear Radius -> The first gear and its pinion are inputs, the code assings the second set!
+ - Fillet Radii -> The code asks the user for the desired fillet radius within a constrained bound @ each geometry change.
+ - Surface Finish -> User's input provides criteria for calculating Endurance Limit
+ - Operating Temperature -> User's input provides criteria for calculating Endurance Limit
+ - Type of Loading -> User's input provides criteria for calculating Endurance Limit
+ - By altering the code, you can change material! (Sy, Sut)
+
+**Note: The code shall be run IN ORDER!! 
+1.) input_shaft.m
+2.) countershaft.m
+3.) output_shaft.m
+
+
+**Outputs: 
+
+ - Shear Diagrams
+ - Moment Diagrams
+ - Torque Diagrams
+ - Optimized Diameters (Rounded to nearest .025 in.)
+ - Locations of Diameter Steps
+
